@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WEBVERSA — GLPI</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<div class="container">
+
+  <h1>WEBVERSA</h1>
+  <p>Generador de correos de FINALIZADO GLPI</p>
+
+  <div class="form-grid">
+
+    <div class="input-group">
+      <label>Nº Caso GLPI</label>
+      <div class="input-wrapper">
+        <i class="fa-solid fa-ticket"></i>
+        <input type="text" id="caso" autocomplete="off">
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label>Sede</label>
+      <div class="input-wrapper">
+        <i class="fa-solid fa-building"></i>
+        <select id="sede"></select>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label>Fecha inicio</label>
+      <div class="input-wrapper">
+        <i class="fa-solid fa-clock"></i>
+        <input type="text" id="inicio" autocomplete="off" placeholder="dd/mm/aaaa hh:mm">
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label>Fecha fin</label>
+      <div class="input-wrapper">
+        <i class="fa-solid fa-hourglass-end"></i>
+        <input type="text" id="fin" autocomplete="off" placeholder="dd/mm/aaaa hh:mm">
+      </div>
+    </div>
+
+    <div class="input-group full-width">
+      <label>Título GLPI</label>
+      <div class="input-wrapper">
+        <i class="fa-solid fa-pen"></i>
+        <textarea id="descripcion"></textarea>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label>Caso HW</label>
+      <div class="input-wrapper">
+        <i class="fa-solid fa-microchip"></i>
+        <input type="text" id="caso_hw" autocomplete="off">
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label>Ubicación máquina</label>
+      <div class="input-wrapper">
+        <i class="fa-solid fa-location-dot"></i>
+        <input type="text" id="ubicacion" autocomplete="off">
+      </div>
+    </div>
+
+    <div class="input-group full-width">
+      <label>Peticionario</label>
+      <div class="input-wrapper">
+        <i class="fa-solid fa-user"></i>
+        <input type="text" id="peticionario" autocomplete="off">
+      </div>
+    </div>
+
+    <div class="input-group full-width">
+      <label>Descripción de los trabajos realizados</label>
+      <div class="input-wrapper">
+        <i class="fa-solid fa-screwdriver-wrench"></i>
+        <textarea id="trabajos"></textarea>
+      </div>
+    </div>
+
+    <div class="full-width">
+      <button id="generar">Generar Email</button>
+    </div>
+
+    <div class="full-width limpiar-container">
+      <span id="limpiar">Limpiar campos</span>
+    </div>
+
+    <div class="full-width limpiar-container">
+      <span id="volver">Volver al menú</span>
+    </div>
+
+  </div>
+
+  <!-- PREVIEW -->
+  <div class="preview-section" id="preview">
+    <div class="preview-meta" id="preview-meta"></div>
+    <div class="preview-body" id="preview-body"></div>
+    <div class="preview-actions">
+      <button class="btn-copy" id="btn-copiar">
+        <i class="fa-solid fa-copy"></i> Copiar email
+      </button>
+      <button class="btn-outlook" id="btn-outlook">
+        <i class="fa-solid fa-envelope"></i> Abrir en Outlook
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<script src="../js/utils/utils.js"></script>
+<script src="../js/utils/emailTemplates.js"></script>
+<script src="../js/forms/formularios.js"></script>
+
+</body>
+</html>

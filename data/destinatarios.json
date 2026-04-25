@@ -1,0 +1,52 @@
+{
+  "glpi": {
+    "para": [
+      "ricardo.terriza.garcia@kyndryl.com",
+      "eduardo.balaguer1@kyndryl.com",
+      "antonio.sancheztenorio@kyndryl.com",
+      "javi.rodriguez1@kyndryl.com",
+      "kevin.bosch.cazalla@kyndryl.com"
+    ],
+    "cc": []
+  },
+  "remedy": {
+    "para": [
+      "ricardo.terriza.garcia@kyndryl.com",
+      "eduardo.balaguer1@kyndryl.com",
+      "antonio.sancheztenorio@kyndryl.com",
+      "javi.rodriguez1@kyndryl.com",
+      "kevin.bosch.cazalla@kyndryl.com"
+    ],
+    "cc": []
+  },
+  "programado": {
+    "para": [
+      "ricardo.terriza.garcia@kyndryl.com",
+      "eduardo.balaguer1@kyndryl.com",
+      "antonio.sancheztenorio@kyndryl.com",
+      "javi.rodriguez1@kyndryl.com",
+      "kevin.bosch.cazalla@kyndryl.com"
+    ],
+    "cc": []
+  },
+  "ventana": {
+    "para": [],
+    "cc": [
+      "TMC.Infrastructure@masorange.es",
+      "juan.zaragoza@kyndryl.com",
+      "jgarciajustel@kyndryl.com",
+      "guillermo.fresno@kyndryl.com",
+      "Victor.Salazar.Conejo@kyndryl.com",
+      "SPGEST-INC-INT@kyndryl.com"
+    ]
+  },
+  "econocom": {
+    "para": [
+      "sga.es@econocom.com",
+      "servicemanager.es@econocom.com",
+      "guardia.techwmad.es@econocom.com",
+      "SPGEST-INC-INT@kyndryl.com"
+    ],
+    "cc": []
+  }
+}

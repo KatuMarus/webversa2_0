@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>WEBVERSA</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <img src="assets/mailversa_logo.png" class="logo-main" onerror="this.style.display='none'">
+
+    <button class="active" data-tipo="glpi">FINALIZADO GLPI</button>
+    <button data-tipo="remedy">FINALIZADO REMEDY</button>
+    <button data-tipo="econocom">CASO ECONOCOM</button>
+    <button data-tipo="ventana">SOLICITUD VENTANA FT</button>
+    <button data-tipo="programado">PROGRAMADO</button>
+
+    <div class="historial">
+      <h4>Historial</h4>
+      <ul id="historialLista"></ul>
+    </div>
+
+    <img src="assets/dblopz-small.png" class="logo-bottom" onerror="this.style.display='none'">
+  </aside>
+
+  <!-- FORM -->
+  <main class="form">
+    <div class="container">
+
+      <h1 id="tituloFormulario">FINALIZADO GLPI</h1>
+      <p>Completa los datos del caso</p>
+
+      <!-- ===== CAMPOS GLPI / REMEDY ===== -->
+      <div class="form-grid" id="campos-glpi">
+
+        <div class="input-group">
+          <label>Nº Caso GLPI</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-hashtag"></i>
+            <input id="caso" type="text" placeholder="Ej: SR10012345">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Sede</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-building"></i>
+            <select id="sede">
+              <option value="">Seleccionar</option>
+              <option>CERDANYOLA</option>
+              <option>TORREJÓN</option>
+              <option>YÉCORA</option>
+              <option>ATLAS BCN</option>
+              <option>ECHEGARAY</option>
+              <option>COSLADA</option>
+              <option>ULISES</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Fecha inicio</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-calendar"></i>
+            <input id="inicio" type="text" placeholder="dd/mm/aaaa">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Fecha fin</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-calendar-check"></i>
+            <input id="fin" type="text" placeholder="dd/mm/aaaa">
+          </div>
+        </div>
+
+        <div class="input-group full">
+          <label>Título GLPI</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-heading"></i>
+            <input id="titulo" type="text" placeholder="Introduce título del ticket">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Caso HW</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-microchip"></i>
+            <input id="caso_hw" type="text" placeholder="Introduce núm Caso HW">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Ubicación máquina</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-location-dot"></i>
+            <input id="ubicacion" type="text" placeholder="Coordenada máquina">
+          </div>
+        </div>
+
+        <div class="input-group full">
+          <label>Peticionario</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-user"></i>
+            <input id="peticionario" type="text" placeholder="Nombre, Apellidos">
+          </div>
+        </div>
+
+        <div class="input-group full">
+          <label>Descripción de los trabajos realizados</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-align-left"></i>
+            <textarea id="trabajos" placeholder="Describe los trabajos realizados..."></textarea>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ===== CAMPOS PROGRAMADO ===== -->
+      <div class="form-grid" id="campos-programado" style="display:none;">
+
+        <div class="input-group">
+          <label>Herramienta</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+            <select id="p_herramienta">
+              <option value="">Seleccionar</option>
+              <option value="REMEDY">REMEDY</option>
+              <option value="GLPI">GLPI</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Sede</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-building"></i>
+            <select id="p_sede">
+              <option value="">Seleccionar</option>
+              <option>CERDANYOLA</option>
+              <option>TORREJÓN</option>
+              <option>YÉCORA</option>
+              <option>ATLAS BCN</option>
+              <option>ECHEGARAY</option>
+              <option>COSLADA</option>
+              <option>ULISES</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Nº de cambio</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-rotate"></i>
+            <input type="text" id="p_num_cambio" placeholder="Ej: CHG0012345">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Título del cambio</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-pen"></i>
+            <input type="text" id="p_descripcion" placeholder="Introduce el título del cambio">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Fecha inicio</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-calendar"></i>
+            <input type="date" id="p_fecha_inicio">
+          </div>
+          <div class="input-wrapper" style="margin-top:6px;">
+            <i class="fa-solid fa-clock"></i>
+            <select id="p_hora_inicio">
+              <option>00</option><option>01</option><option>02</option><option>03</option>
+              <option>04</option><option>05</option><option>06</option><option>07</option>
+              <option>08</option><option>09</option><option>10</option><option>11</option>
+              <option>12</option><option>13</option><option>14</option><option>15</option>
+              <option>16</option><option>17</option><option>18</option><option>19</option>
+              <option>20</option><option>21</option><option>22</option><option>23</option>
+            </select>
+            <span style="color:#fff;"></span>
+            <select id="p_min_inicio">
+              <option>00</option><option>15</option><option>30</option><option>45</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Fecha fin</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-calendar-check"></i>
+            <input type="date" id="p_fecha_fin">
+          </div>
+          <div class="input-wrapper" style="margin-top:6px;">
+            <i class="fa-solid fa-hourglass-end"></i>
+            <select id="p_hora_fin">
+              <option>00</option><option>01</option><option>02</option><option>03</option>
+              <option>04</option><option>05</option><option>06</option><option>07</option>
+              <option>08</option><option>09</option><option>10</option><option>11</option>
+              <option>12</option><option>13</option><option>14</option><option>15</option>
+              <option>16</option><option>17</option><option>18</option><option>19</option>
+              <option>20</option><option>21</option><option>22</option><option>23</option>
+            </select>
+            <span style="color:#fff;"></span>
+            <select id="p_min_fin">
+              <option>00</option><option>15</option><option>30</option><option>45</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Incidencia REMEDY</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-ticket"></i>
+            <input type="text" id="p_remedy" placeholder="Introduce la incidencia relacionada">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Caso HW / Soporte</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-headset"></i>
+            <input type="text" id="p_caso_soporte" placeholder="Introduce núm Caso HW"> 
+          </div>
+        </div>
+
+        <div class="input-group full">
+          <label>Información adicional</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-circle-info"></i>
+            <textarea id="p_info" placeholder="Información adicional..."></textarea>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>AP</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-network-wired"></i>
+            <input type="text" id="p_ap" placeholder="Plan de Acción">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Downtime</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-clock"></i>
+            <select id="p_downtime">
+              <option value="0">0 min</option>
+              <option value="15">15 min</option>
+              <option value="30">30 min</option>
+              <option value="60">60 min</option>
+              <option value="120">120 min</option>
+              <option value="150">150 min</option>
+              <option value="180">180 min</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ===== CAMPOS VENTANA FT ===== -->
+      <div class="form-grid" id="campos-ventana" style="display:none;">
+
+        <div class="input-group">
+          <label>Nº de Cambio</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-arrows-rotate"></i>
+            <input type="text" id="v_numero_cambio" placeholder="Ej: CRQ000000123456">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Incidencia REMEDY</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-ticket"></i>
+            <input type="text" id="v_incidencia_remedy" placeholder="Introduce la incidencia relacionada">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>HOSTNAME</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-server"></i>
+            <input type="text" id="v_hostname" placeholder="Introduce hostname de la máquina">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Serial Number</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-microchip"></i>
+            <input type="text" id="v_serial" placeholder="Introduce SN de la máquina">
+          </div>
+        </div>
+
+        <div class="input-group full">
+          <label>Ubicación del equipo</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-location-dot"></i>
+            <input type="text" id="v_ubicacion" placeholder="Ubicación de la máquina en sala">
+          </div>
+        </div>
+
+        <div class="input-group full">
+          <label>Tarea a realizar</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+            <textarea id="v_tarea" placeholder="Describe la tarea a realizar..."></textarea>
+          </div>
+        </div>
+
+        <div class="input-group full">
+          <label>Grupos relacionados</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-users"></i>
+            <textarea id="v_grupos" placeholder="Grupos de soporte implicados..."></textarea>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Tipo de cambio</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-shuffle"></i>
+            <select id="v_cambio">
+              <option value="">Seleccionar</option>
+              <option value="CONCURRENTE">CONCURRENTE</option>
+              <option value="CON PARADA">CON PARADA</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Tiempo intervención</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-clock"></i>
+            <select id="v_tiempo">
+              <option value="">Seleccionar</option>
+              <option value="30">30 min</option>
+              <option value="60">60 min</option>
+              <option value="90">90 min</option>
+              <option value="120">120 min</option>
+              <option value="150">150 min</option>
+              <option value="180">180 min</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ===== CAMPOS ECONOCOM ===== -->
+      <div class="form-grid" id="campos-econocom" style="display:none;">
+
+        <div class="input-group">
+          <label>Nº Caso OPIT</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-ticket"></i>
+            <input type="text" id="e_caso_opit" placeholder="Ej: OPIT-123456">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Título OPIT</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-pen"></i>
+            <input type="text" id="e_titulo_opit" placeholder="Introduce el título del caso">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Cliente</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-building"></i>
+            <select id="e_cliente">
+              <option value="">-- Selecciona --</option>
+              <option value="MASMÓVIL">MASMÓVIL</option>
+              <option value="MASORANGE">MASORANGE</option>
+              <option value="FT">FT</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Sede</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-location-dot"></i>
+            <select id="e_sede">
+              <option value="">Seleccionar</option>
+              <option>CERDANYOLA</option>
+              <option>TORREJÓN</option>
+              <option>YÉCORA</option>
+              <option>ATLAS BCN</option>
+              <option>ECHEGARAY</option>
+              <option>COSLADA</option>
+              <option>ULISES</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="input-group full">
+          <label>Dirección Sede</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-map"></i>
+            <input type="text" id="e_direccion" placeholder="Se autocompleta al seleccionar Sede" readonly>
+          </div>
+        </div>
+
+         <div class="input-group">
+          <label>Serial Number</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-barcode"></i>
+            <input type="text" id="e_serial" placeholder="Introduce SN de la máquina">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Marca/Modelo</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-server"></i>
+            <input type="text" id="e_marca_modelo" placeholder="Introduce el tipo y el modelo">
+          </div>
+        </div>
+
+        <div class="input-group full">
+          <label>Ubicación máquina</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-map-pin"></i>
+            <input type="text" id="e_ubicacion" placeholder="Ubicación de la máquina en sala">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Persona de contacto</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-user"></i>
+            <select id="e_contacto">
+              <option value="">-- Selecciona --</option>
+              <option value="Ricardo Terriza García">Ricardo Terriza García</option>
+              <option value="Eduardo Balaguer Hernández">Eduardo Balaguer Hernández</option>
+              <option value="Antonio Sánchez Tenorio">Antonio Sánchez Tenorio</option>
+              <option value="Jordi Martínez Almarcha">Jordi Martínez Almarcha</option>
+              <option value="Javier Rodríguez Rodríguez">Javier Rodríguez Rodríguez</option>
+              <option value="Kevin Bosch Cazalla">Kevin Bosch Cazalla</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>E-mail</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-envelope"></i>
+            <input type="text" id="e_email" placeholder="Se autocompleta al seleccionar Contacto" readonly>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Teléfono</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-phone"></i>
+            <input type="text" id="e_telefono" autocomplete="new-password" value="+34 618 34 67 88">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>¿Máquina Operativa?</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-circle-check"></i>
+            <select id="e_operativa">
+              <option value="">-- Selecciona --</option>
+              <option value="SI, está operativa">SI, está operativa</option>
+              <option value="NO, está sin servicio">NO, está sin servicio</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="input-group full">
+          <label>Incidencia detectada</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <textarea id="e_incidencia" placeholder="Describe la incidencia detectada..."></textarea>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="form-footer">
+        <button class="main-btn">Generar Email</button>
+        <span id="limpiar" class="limpiar-texto">Limpiar campos</span>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- PREVIEW -->
+  <section class="preview">
+    <h3>Vista previa</h3>
+
+    <div class="copy-field">
+      <input id="para" class="asunto-input" readonly>
+      <button class="copy-btn" data-target="para">Copiar</button>
+    </div>
+
+    <div class="copy-field">
+      <input id="asunto" class="asunto-input" readonly>
+      <button class="copy-btn" data-target="asunto">Copiar</button>
+    </div>
+
+    <div class="card" contenteditable="true" id="editor"></div>
+
+    <div class="preview-actions">
+      <button class="copy-btn" data-target="editor">Copiar Email</button>
+      <button id="abrirMail">Abrir en Outlook</button>
+    </div>
+  </section>
+
+</div>
+
+<script src="js/utils/emailTemplates.js"></script>
+<script src="js/forms/formularios.js"></script>
+
+</body>
+</html>

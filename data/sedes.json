@@ -1,0 +1,11 @@
+{
+  "sedes": [
+    { "nombre": "CERDANYOLA", "abrev": "CER" },
+    { "nombre": "TORREJÓN",   "abrev": "TOR" },
+    { "nombre": "YÉCORA",     "abrev": "YÉC" },
+    { "nombre": "ATLAS BCN",  "abrev": "ATL" },
+    { "nombre": "ECHEGARAY",  "abrev": "ECH" },
+    { "nombre": "COSLADA",    "abrev": "COS" },
+    { "nombre": "ULISES",     "abrev": "ULI" }
+  ]
+}
