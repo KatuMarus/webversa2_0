@@ -45,16 +45,35 @@ function formatearFecha(fechaISO, hora, min) {
 }
 
 // =============================
-// GENERAR EMAIL GLPI/REMEDY
+// GENERAR EMAIL GLPI/REMEDY/MAXIMO_KB/GUARDIA
+// =============================
+
+// =============================
+// GENERAR EMAIL GLPI/REMEDY/MAXIMO_KB/GUARDIA
 // =============================
 
 function generarEmailGLPI(tipo, valores) {
   const { sede, caso, descripcion } = valores;
-  const tipoTexto = tipo.toUpperCase();
   const sedeCorta = sedeAbrev[sede] || sede;
-  const asunto = `FINALIZADO ${tipoTexto} (${sedeCorta}) ${caso} - ${descripcion}`;
+
+  const tipoTexto = {
+    glpi:       "GLPI",
+    remedy:     "REMEDY",
+    maximo_kb:  "MAXIMO KUTXABANK",
+    guardia_hw: "GUARDIA HW"
+  }[tipo] || tipo.toUpperCase();
+
+  const asunto = tipo === "guardia_hw"
+    ? `${tipoTexto} (${sedeCorta}) ${caso} - ${descripcion}`
+    : `FINALIZADO ${tipoTexto} (${sedeCorta}) ${caso} - ${descripcion}`;
+
   const html = generarGLPIHTML(valores, tipoTexto);
-  const dest = destinatarios[tipo] || { para: [], cc: [] };
+
+  const destKey = tipo === "maximo_kb" ? "glpi"
+                : tipo === "guardia_hw" ? "programado"
+                : tipo;
+
+  const dest = destinatarios[destKey] || { para: [], cc: [] };
   return { asunto, html, para: dest.para, cc: dest.cc };
 }
 
@@ -187,7 +206,7 @@ function generarEmailEconocom() {
 // =============================
 
 function mostrarFormulario(tipo) {
-  const esGLPI = (tipo === "glpi" || tipo === "remedy");
+    const esGLPI = (tipo === "glpi" || tipo === "remedy" || tipo === "maximo_kb" || tipo === "guardia_hw");
   document.getElementById("campos-glpi").style.display = esGLPI ? "grid" : "none";
   document.getElementById("campos-programado").style.display = tipo === "programado" ? "grid" : "none";
   document.getElementById("campos-ventana").style.display = tipo === "ventana" ? "grid" : "none";
@@ -196,6 +215,8 @@ function mostrarFormulario(tipo) {
   const titulos = {
     glpi:       "FINALIZADO GLPI",
     remedy:     "FINALIZADO REMEDY",
+    maximo_kb:  "FINALIZADO MAXIMO KUTXABANK",
+    guardia_hw: "GUARDIA HW",
     programado: "PROGRAMADO",
     ventana:    "SOLICITUD VENTANA FT",
     econocom:   "CASO ECONOCOM"
